@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web AFK Client | Modern Minecraft Bot Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0a0a0b',
+                            800: '#161618',
+                            700: '#232326',
+                            600: '#2d2d31'
+                        },
+                        accent: {
+                            primary: '#8b5cf6',
+                            secondary: '#6366f1'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0b;
+            color: #e5e7eb;
+        }
+        .glass {
+            background: rgba(22, 22, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent-primary selection:text-white">
+    <div class="hero-gradient min-h-screen flex flex-col">
+        <!-- Navigation -->
+        <nav class="container mx-auto px-6 py-8 flex justify-between items-center relative z-10">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-accent-primary rounded-xl flex items-center justify-center shadow-lg shadow-accent-primary/20">
+                    <i class="fas fa-robot text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                    Web AFK Client
+                </span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
+                <a href="#features" class="hover:text-white transition-colors">Features</a>
+                <a href="#setup" class="hover:text-white transition-colors">Setup</a>
+                <a href="#changelog" class="hover:text-white transition-colors">Changelog</a>
+                <a href="https://github.com" class="text-white bg-dark-700 px-5 py-2.5 rounded-full hover:bg-dark-600 transition-all border border-white/5 flex items-center space-x-2">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <main class="container mx-auto px-6 pt-20 pb-32 relative z-10 flex-grow">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-xs font-semibold mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
+                    </span>
+                    <span>Version 26.1.1 is now live</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-8 tracking-tight leading-tight">
+                    The Premium <span class="text-accent-primary">Web-Based</span> Minecraft Bot Manager
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 mb-10 leading-relaxed max-w-2xl mx-auto">
+                    A sleek, modern tool for managing Minecraft bot accounts directly from your browser. Powerful features for AFK farming, chat monitoring, and multi-bot control.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="#setup" class="w-full sm:w-auto px-8 py-4 bg-accent-primary hover:bg-accent-primary/90 text-white rounded-2xl font-bold transition-all transform hover:scale-105 shadow-xl shadow-accent-primary/25">
+                        Get Started
+                    </a>
+                    <a href="https://github.com" class="w-full sm:w-auto px-8 py-4 bg-dark-800 hover:bg-dark-700 text-white rounded-2xl font-bold transition-all border border-white/10 flex items-center justify-center space-x-2">
+                        <i class="fab fa-github"></i>
+                        <span>Star on GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Preview Section -->
+        <section class="container mx-auto px-6 pb-32">
+            <div class="relative max-w-5xl mx-auto">
+                <div class="absolute -inset-1 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-[2rem] blur opacity-25"></div>
+                <div class="relative glass rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
+                    <div class="bg-dark-800/50 px-6 py-4 border-b border-white/5 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="flex space-x-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/40"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/40"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/40"></div>
+                            </div>
+                            <span class="ml-4 text-xs font-medium text-gray-500 uppercase tracking-widest">Dashboard Preview</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="h-2 w-24 bg-dark-600 rounded-full overflow-hidden">
+                                <div class="h-full w-2/3 bg-accent-primary rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 grid grid-cols-12 gap-6 bg-dark-900/40">
+                        <div class="col-span-3 space-y-4">
+                            <div class="p-4 bg-dark-800 rounded-xl border border-white/5">
+                                <div class="text-[10px] text-gray-500 uppercase mb-2">Active Bots</div>
+                                <div class="text-2xl font-bold text-white">12 <span class="text-xs font-normal text-green-500 ml-1">+2</span></div>
+                            </div>
+                            <div class="p-4 bg-dark-800 rounded-xl border border-white/5">
+                                <div class="text-[10px] text-gray-500 uppercase mb-2">Total Uptime</div>
+                                <div class="text-2xl font-bold text-white">99.9%</div>
+                            </div>
+                        </div>
+                        <div class="col-span-9 glass rounded-xl border border-white/5 p-6 h-64 relative overflow-hidden">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-sm font-semibold text-white">Live Chat Console</h3>
+                                <div class="flex space-x-2">
+                                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                    <span class="text-[10px] text-gray-400 uppercase tracking-wider">Connected</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3 opacity-50">
+                                <div class="flex space-x-3 text-xs">
+                                    <span class="text-accent-primary font-bold">[Server]</span>
+                                    <span class="text-gray-300">Welcome to the survival world!</span>
+                                </div>
+                                <div class="flex space-x-3 text-xs">
+                                    <span class="text-blue-400 font-bold">Bot_01:</span>
+                                    <span class="text-gray-300">Standing by at spawn coordinates.</span>
+                                </div>
+                                <div class="flex space-x-3 text-xs font-mono">
+                                    <span class="text-gray-500">> help</span>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4 bg-dark-800/80 border-t border-white/5">
+                                <div class="flex items-center space-x-3 text-xs text-gray-500 italic">
+                                    <span>Press '/' to enter a command...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="container mx-auto px-6 py-32 border-t border-white/5">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Everything you need to manage bots</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Powerful, intuitive, and designed for efficiency. Web AFK Client brings professional management tools to your fingertips.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Multi-Bot Management -->
+                <div class="p-8 rounded-3xl bg-dark-800/50 border border-white/5 hover:border-accent-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-accent-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-users text-accent-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Multi-Bot Management</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Connect and manage unlimited bots simultaneously from a single unified interface.</p>
+                </div>
+
+                <!-- Live Chat Console -->
+                <div class="p-8 rounded-3xl bg-dark-800/50 border border-white/5 hover:border-accent-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-accent-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-comments text-accent-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Live Chat Console</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Monitor server chat in real-time and send messages or commands directly to any bot.</p>
+                </div>
+
+                <!-- Movement Controls -->
+                <div class="p-8 rounded-3xl bg-dark-800/50 border border-white/5 hover:border-accent-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-accent-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-gamepad text-accent-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Movement Controls</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Direct control with WASD and Jump. Navigate your bots through the world effortlessly.</p>
+                </div>
+
+                <!-- Anti-AFK -->
+                <div class="p-8 rounded-3xl bg-dark-800/50 border border-white/5 hover:border-accent-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-accent-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-clock text-accent-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Anti-AFK</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Built-in smart logic to prevent being kicked for inactivity on any Minecraft server.</p>
+                </div>
+
+                <!-- Auto-Reconnect -->
+                <div class="p-8 rounded-3xl bg-dark-800/50 border border-white/5 hover:border-accent-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-accent-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-sync text-accent-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Auto-Reconnect</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Automatically restores connections if bots get disconnected from the server.</p>
+                </div>
+
+                <!-- Proxy Support -->
+                <div class="p-8 rounded-3xl bg-dark-800/50 border border-white/5 hover:border-accent-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-accent-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-shield-alt text-accent-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Proxy Support</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Route bots through SOCKS/HTTP proxies for enhanced security and privacy.</p>
+                </div>
+
+                <!-- Account Manager -->
+                <div class="p-8 rounded-3xl bg-dark-800/50 border border-white/5 hover:border-accent-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-accent-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-key text-accent-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Account Manager</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Securely save and manage multiple bot credentials for quick deployment.</p>
+                </div>
+
+                <!-- Configurable Settings -->
+                <div class="p-8 rounded-3xl bg-dark-800/50 border border-white/5 hover:border-accent-primary/50 transition-all group">
+                    <div class="w-12 h-12 bg-accent-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-cog text-accent-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Configurable Settings</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Toggle physics, sneaking, and set custom join messages for each bot.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation Section -->
+        <section id="setup" class="container mx-auto px-6 py-32">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center space-x-4 mb-12">
+                    <div class="h-px flex-grow bg-white/5"></div>
+                    <h2 class="text-3xl font-bold text-white">Installation & Setup</h2>
+                    <div class="h-px flex-grow bg-white/5"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Backend Setup -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-accent-primary/20 flex items-center justify-center text-accent-primary font-bold">1</div>
+                            <h3 class="text-xl font-semibold text-white">Backend Setup</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm">The bot manager handles Minecraft connections on port 25582.</p>
+                        <div class="bg-dark-800 rounded-2xl p-6 border border-white/5 font-mono text-sm overflow-x-auto text-gray-300">
+                            <div class="flex items-center justify-between mb-4 text-gray-500 text-xs">
+                                <span>Terminal</span>
+                                <i class="far fa-copy cursor-pointer hover:text-white transition-colors"></i>
+                            </div>
+                            <div class="space-y-2">
+                                <p><span class="text-accent-primary">cd</span> backend</p>
+                                <p><span class="text-accent-primary">npm</span> install</p>
+                                <p class="text-gray-500"># Start the bot manager</p>
+                                <p><span class="text-accent-primary">npm</span> start</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Frontend Setup -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-accent-secondary/20 flex items-center justify-center text-accent-secondary font-bold">2</div>
+                            <h3 class="text-xl font-semibold text-white">Frontend Setup</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm">The web interface will be accessible at port 8080.</p>
+                        <div class="bg-dark-800 rounded-2xl p-6 border border-white/5 font-mono text-sm overflow-x-auto text-gray-300">
+                            <div class="flex items-center justify-between mb-4 text-gray-500 text-xs">
+                                <span>Terminal</span>
+                                <i class="far fa-copy cursor-pointer hover:text-white transition-colors"></i>
+                            </div>
+                            <div class="space-y-2">
+                                <p><span class="text-accent-primary">cd</span> ..</p>
+                                <p><span class="text-accent-primary">npm</span> install</p>
+                                <p class="text-gray-500"># Run development server</p>
+                                <p><span class="text-accent-primary">npm</span> run dev</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Changelog Section -->
+        <section id="changelog" class="container mx-auto px-6 py-32 bg-dark-800/20">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex items-center justify-between mb-12">
+                    <h2 class="text-3xl font-bold text-white">Changelog</h2>
+                    <span class="px-4 py-1 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-xs font-bold">Latest Release</span>
+                </div>
+
+                <div class="relative pl-8 border-l border-white/10 space-y-12">
+                    <div>
+                        <div class="absolute -left-1.5 w-3 h-3 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(139,92,246,0.5)]"></div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="text-lg font-bold text-white">v26.1.1</span>
+                            <span class="text-sm text-gray-500">The "Frontend Polishment" Update</span>
+                        </div>
+                        <ul class="space-y-4 text-gray-400 text-sm leading-relaxed">
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-check text-green-500/50 mt-1"></i>
+                                <span><strong>Full State Persistence:</strong> Bot statuses, health, experience, and inventories now persist reliably across page refreshes.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-check text-green-500/50 mt-1"></i>
+                                <span><strong>Dashboard Enhancements:</strong> New dashboard page showing real-time health, experience, hunger bar, and inventory.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-check text-green-500/50 mt-1"></i>
+                                <span><strong>Enhanced Disconnection:</strong> Functional leave buttons and improved "Disconnect All" robustness.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-check text-green-500/50 mt-1"></i>
+                                <span><strong>Real-time Sync:</strong> Explicit state sync mechanism between backend and frontend.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="container mx-auto px-6 py-12 border-t border-white/5 text-gray-500">
+            <div class="grid md:grid-cols-2 gap-12 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-accent-primary rounded-lg flex items-center justify-center text-white">
+                            <i class="fas fa-robot text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Web AFK Client</span>
+                    </div>
+                    <p class="text-sm max-w-sm">
+                        Providing technical Minecraft players with high-quality cloud-based account management tools.
+                    </p>
+                </div>
+                <div class="flex md:justify-end items-center space-x-6">
+                    <a href="#" class="hover:text-white transition-colors"><i class="fab fa-discord text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="https://github.com" class="hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 text-center">
+                <p class="text-[10px] uppercase tracking-[0.2em] mb-4">
+                    Licensed under BSD-3-Clause • Fan-made tool
+                </p>
+                <p class="text-[10px] text-gray-700 max-w-2xl mx-auto leading-loose italic">
+                    Disclaimer: This project is not affiliated with Mojang Studios, Microsoft, or the developers of AFK Console Client. It is intended for technical players as a self-hosted alternative.
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
